@@ -7,7 +7,7 @@ from blog.infra.sqlalchemy.database import get_db
 
 
 #CRIANDO ROTAS DO USUARIO
-router = APIRouter()
+router = APIRouter
 
 @router.post('/criar')
 def criar_usuario(usuario:schemaUsuario.Usuario, session:Session = Depends(get_db)):

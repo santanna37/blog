@@ -13,3 +13,9 @@ class Usuario(BaseModel):
     class config:
         orm_mode=True
 
+class AlterarUsuario(Usuario):
+    id: Usuario.id
+    nome: str
+    email: str
+    senha: str
+

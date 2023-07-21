@@ -7,7 +7,8 @@ from blog.infra.sqlalchemy.database import Base
 class Usuario(Base):
     __tablename__='usuarios'
     
-    id = Column(String, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True, unique=True)
     nome = Column(String)
     email = Column(String)
     senha = Column(String)
+    

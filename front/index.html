@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  <main>
+    <!-- Aqui usamos a biblioteca "markdown-it" para renderizar o Markdown em HTML -->
+    <!-- Certifique-se de instalar a biblioteca com "npm install markdown-it" -->
+    <div id="conteudo" style="margin-top: 20px;">
+      <!-- O conteúdo do arquivo "index.md" será renderizado aqui -->
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script>
+    const markdownIt = new window.markdownit();
+    fetch('index.md')
+      .then(response => response.text())
+      .then(text => {
+        const conteudoDiv = document.getElementById('conteudo');
+        conteudoDiv.innerHTML = markdownIt.render(text);
+      });
+  </script>
+</body>
+</html>
+v

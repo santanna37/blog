@@ -31,14 +31,20 @@ class RepositorioUsuario():
         return usuarios
 
 
-    def editar(self, usuario: schemaUsuario.Usuario):
-        updateConta = update(modelsUsuario.Usuario).where(
-                                                    modelsUsuario.Usuario.nome == usuario.nome
+    def editar( self, email: str, usuario: schemaUsuario.AlterarUsuario):
+        updateConta = update(
+                        modelsUsuario.Usuario).where(
+                                                    modelsUsuario.Usuario.email == email
                                                     ).values(
                                                             nome = usuario.nome,
                                                             email = usuario.email,
                                                             senha = usuario.senha
                                                             )
+        
+        self.session.execute(updateConta)
+        self.session.commit()
+        
+
 
 
     # def editar(self, id: int, produto: schemas.Produto):

@@ -5,7 +5,7 @@ from typing import Optional
 # SCHEMAS DE USUARIOS 
 
 class Usuario(BaseModel):
-    id: Optional[str] = None
+    id: Optional[int] = None
     nome: str
     email: str
     senha: str
@@ -13,9 +13,9 @@ class Usuario(BaseModel):
     class config:
         orm_mode=True
 
-class AlterarUsuario(Usuario):
-    id: Usuario.id
-    nome: str
-    email: str
-    senha: str
+# class AlterarUsuario(Usuario):
+#     id: int
+#     nome: str
+#     email: str
+#     senha: str
 

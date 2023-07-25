@@ -2,6 +2,7 @@
 from sqlalchemy.orm import Session
 from blog.schemas import schemaUsuario
 from blog.models import modelsUsuario 
+from sqlalchemy import *
 
 
 # CRIANDO REPOSITORIO 
@@ -10,6 +11,7 @@ class RepositorioUsuario():
     def __init__(self, session:Session):
         self.session = session
         
+
     def criar(self, usuario:schemaUsuario.Usuario):
         db_usuario = modelsUsuario.Usuario(
             id = usuario.id,
@@ -22,3 +24,29 @@ class RepositorioUsuario():
         self.session.refresh(db_usuario)
         return db_usuario
     
+
+    def listar(self):
+        lista = select(modelsUsuario.Usuario)
+        usuarios = self.session.execute(lista).scalars().all()
+        return usuarios
+
+
+    def editar(self, usuario: schemaUsuario.Usuario):
+        updateConta = update(modelsUsuario.Usuario).where(
+                                                    modelsUsuario.Usuario.nome == usuario.nome
+                                                    ).values(
+                                                            nome = usuario.nome,
+                                                            email = usuario.email,
+                                                            senha = usuario.senha
+                                                            )
+
+
+    # def editar(self, id: int, produto: schemas.Produto):
+    #         update_stmt = update(models.Produto).where(
+    #             models.Produto.id == id).values(nome=produto.nome,
+    #                                             detalhes=produto.detalhes,
+    #                                             preco=produto.preco,
+    #                                             disponivel=produto.disponivel,
+    #                                             )
+    #         self.session.execute(update_stmt)
+    #         self.session.commit()

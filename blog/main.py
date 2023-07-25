@@ -8,7 +8,7 @@ from blog.routers import routersUsuario
 
 #CLIRANDO BANCO DE DADOS
 
-#criar_db()
+criar_db()
 app = FastAPI()
 
 # ROTAS 
